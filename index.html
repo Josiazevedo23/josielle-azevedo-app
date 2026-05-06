@@ -1,0 +1,1115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josielle Azevedo — Inteligência Emocional & IA</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF6EF;
+    --ink: #1A1410;
+    --rose: #C8756A;
+    --blush: #E8B4AD;
+    --sage: #7A9B8A;
+    --gold: #C9A96E;
+    --deep: #2D1F1A;
+    --mist: #F0EBE3;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--ink);
+    overflow-x: hidden;
+    cursor: none;
+  }
+
+  /* Custom Cursor */
+  .cursor {
+    width: 10px; height: 10px;
+    background: var(--rose);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.1s, width 0.3s, height 0.3s, background 0.3s;
+    mix-blend-mode: multiply;
+  }
+  .cursor-ring {
+    width: 36px; height: 36px;
+    border: 1.5px solid var(--rose);
+    border-radius: 50%;
+    position: fixed; top: 0; left: 0;
+    pointer-events: none; z-index: 9998;
+    transform: translate(-50%, -50%);
+    transition: all 0.15s ease-out;
+    opacity: 0.6;
+  }
+  body:hover .cursor { opacity: 1; }
+
+  /* Grain overlay */
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events: none;
+    z-index: 1000;
+    opacity: 0.5;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 20px 48px;
+    background: rgba(250,246,239,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,117,106,0.12);
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-weight: 900; font-size: 1.1rem;
+    letter-spacing: -0.02em;
+    color: var(--deep);
+  }
+  .nav-logo span { color: var(--rose); font-style: italic; }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a {
+    font-size: 0.8rem; font-weight: 500; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink);
+    text-decoration: none; opacity: 0.6;
+    transition: opacity 0.2s;
+    cursor: none;
+  }
+  .nav-links a:hover { opacity: 1; color: var(--rose); }
+  .nav-cta {
+    background: var(--rose); color: white;
+    border: none; padding: 10px 24px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.8rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    cursor: none; border-radius: 2px;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .nav-cta:hover { background: var(--deep); transform: translateY(-1px); }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 48px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg-circle {
+    position: absolute; right: -100px; top: 50%;
+    transform: translateY(-50%);
+    width: 600px; height: 600px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #E8B4AD40 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rose); font-weight: 500;
+    margin-bottom: 24px;
+  }
+  .hero-tag::before {
+    content: ''; width: 28px; height: 1.5px; background: var(--rose);
+  }
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(3rem, 5vw, 5.2rem);
+    font-weight: 900; line-height: 1.05;
+    letter-spacing: -0.03em;
+    color: var(--deep);
+    margin-bottom: 28px;
+  }
+  h1 em { font-style: italic; color: var(--rose); }
+  .hero-sub {
+    font-size: 1.05rem; font-weight: 300; line-height: 1.7;
+    color: var(--ink); opacity: 0.7; max-width: 420px;
+    margin-bottom: 44px;
+  }
+  .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--rose); color: white;
+    border: none; padding: 15px 36px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.04em; cursor: none; border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-primary:hover { background: var(--deep); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(26,20,16,0.15); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border: 1.5px solid rgba(26,20,16,0.2); padding: 15px 36px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.04em; cursor: none; border-radius: 2px;
+    transition: all 0.25s;
+  }
+  .btn-secondary:hover { border-color: var(--rose); color: var(--rose); }
+
+  .hero-right {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .hero-card {
+    background: white;
+    border: 1px solid rgba(200,117,106,0.15);
+    border-radius: 16px;
+    padding: 40px;
+    max-width: 360px; width: 100%;
+    box-shadow: 0 30px 80px rgba(26,20,16,0.08);
+    position: relative;
+    animation: floatCard 6s ease-in-out infinite;
+  }
+  @keyframes floatCard {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  .card-avatar {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--blush));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 28px; margin-bottom: 20px;
+  }
+  .card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 8px; color: var(--deep);
+  }
+  .card-desc { font-size: 0.85rem; opacity: 0.6; line-height: 1.6; margin-bottom: 24px; }
+  .card-stats { display: flex; gap: 20px; }
+  .stat { text-align: center; }
+  .stat-num { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; color: var(--rose); }
+  .stat-lbl { font-size: 0.7rem; opacity: 0.5; letter-spacing: 0.06em; text-transform: uppercase; }
+  .card-badge {
+    position: absolute; top: -12px; right: 24px;
+    background: var(--sage); color: white;
+    font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 5px 14px; border-radius: 20px; font-weight: 500;
+  }
+
+  /* ── SECTION BASE ── */
+  section { padding: 100px 48px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--rose); font-weight: 500; margin-bottom: 16px;
+  }
+  .section-tag::before { content: ''; width: 20px; height: 1.5px; background: var(--rose); }
+  h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 3.5vw, 3.2rem);
+    font-weight: 900; line-height: 1.1; letter-spacing: -0.02em;
+    color: var(--deep); margin-bottom: 16px;
+  }
+  h2 em { font-style: italic; color: var(--rose); }
+  .section-sub { font-size: 1rem; opacity: 0.6; line-height: 1.7; max-width: 480px; }
+
+  /* ── MÓDULOS ── */
+  #modulos { background: var(--deep); color: white; }
+  #modulos .section-tag { color: var(--blush); }
+  #modulos .section-tag::before { background: var(--blush); }
+  #modulos h2 { color: white; }
+  #modulos h2 em { color: var(--blush); }
+  #modulos .section-sub { color: rgba(255,255,255,0.5); }
+  .modulos-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 24px; margin-top: 60px;
+  }
+  .modulo-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px; padding: 36px 28px;
+    transition: all 0.3s; cursor: none;
+    position: relative; overflow: hidden;
+  }
+  .modulo-card::before {
+    content: ''; position: absolute;
+    inset: 0; background: linear-gradient(135deg, rgba(200,117,106,0.08), transparent);
+    opacity: 0; transition: opacity 0.3s;
+  }
+  .modulo-card:hover { border-color: rgba(200,117,106,0.3); transform: translateY(-4px); }
+  .modulo-card:hover::before { opacity: 1; }
+  .modulo-icon { font-size: 2.2rem; margin-bottom: 20px; display: block; }
+  .modulo-num {
+    font-family: 'DM Mono', monospace; font-size: 0.72rem;
+    color: var(--rose); letter-spacing: 0.1em; margin-bottom: 10px; opacity: 0.8;
+  }
+  .modulo-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem; font-weight: 700; margin-bottom: 10px;
+    color: white;
+  }
+  .modulo-desc { font-size: 0.85rem; opacity: 0.5; line-height: 1.65; }
+  .modulo-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 0.78rem; color: var(--blush); margin-top: 20px;
+    text-decoration: none; font-weight: 500; letter-spacing: 0.04em;
+    cursor: none; transition: gap 0.2s;
+  }
+  .modulo-link:hover { gap: 10px; }
+
+  /* ── MAPA MENTAL INTERATIVO ── */
+  #mapa { background: var(--mist); }
+  .mapa-container {
+    margin-top: 60px;
+    background: white;
+    border-radius: 20px;
+    padding: 48px;
+    border: 1px solid rgba(200,117,106,0.1);
+    box-shadow: 0 20px 60px rgba(26,20,16,0.06);
+  }
+  .mapa-center {
+    display: flex; justify-content: center; margin-bottom: 40px;
+  }
+  .mapa-node-central {
+    background: linear-gradient(135deg, var(--rose), #A85A50);
+    color: white; border-radius: 50%;
+    width: 120px; height: 120px;
+    display: flex; align-items: center; justify-content: center;
+    text-align: center; padding: 12px;
+    font-family: 'Playfair Display', serif; font-weight: 700; font-size: 0.9rem;
+    line-height: 1.2; box-shadow: 0 20px 50px rgba(200,117,106,0.35);
+    cursor: none;
+  }
+  .mapa-branches {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  .mapa-branch {
+    background: var(--cream); border-radius: 12px; padding: 20px;
+    border-left: 3px solid var(--rose);
+    transition: all 0.25s; cursor: none;
+  }
+  .mapa-branch:nth-child(2n) { border-left-color: var(--sage); }
+  .mapa-branch:nth-child(3n) { border-left-color: var(--gold); }
+  .mapa-branch:hover { transform: translateX(4px); box-shadow: 0 8px 24px rgba(26,20,16,0.08); }
+  .branch-icon { font-size: 1.4rem; margin-bottom: 8px; }
+  .branch-title { font-weight: 600; font-size: 0.9rem; margin-bottom: 6px; color: var(--deep); }
+  .branch-desc { font-size: 0.78rem; opacity: 0.55; line-height: 1.55; }
+
+  /* ── DIÁRIO EMOCIONAL ── */
+  #diario { background: white; }
+  .diario-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; margin-top: 60px; }
+  .diario-form { display: flex; flex-direction: column; gap: 20px; }
+  .form-group { display: flex; flex-direction: column; gap: 8px; }
+  .form-label { font-size: 0.78rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.5; }
+  .emotion-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+  .emotion-btn {
+    background: var(--cream); border: 1.5px solid transparent;
+    border-radius: 8px; padding: 10px 6px;
+    text-align: center; cursor: none;
+    transition: all 0.2s; font-size: 0.75rem;
+  }
+  .emotion-btn .emoji { font-size: 1.4rem; display: block; margin-bottom: 4px; }
+  .emotion-btn:hover, .emotion-btn.active {
+    border-color: var(--rose); background: rgba(200,117,106,0.06);
+  }
+  .diario-textarea {
+    background: var(--cream); border: 1.5px solid rgba(26,20,16,0.08);
+    border-radius: 10px; padding: 16px; resize: vertical; min-height: 120px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; line-height: 1.65;
+    outline: none; transition: border-color 0.2s;
+  }
+  .diario-textarea:focus { border-color: var(--rose); }
+  .diario-textarea::placeholder { opacity: 0.35; }
+  .diario-submit {
+    background: var(--rose); color: white; border: none;
+    padding: 14px 28px; border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    cursor: none; transition: all 0.25s; align-self: flex-start;
+  }
+  .diario-submit:hover { background: var(--deep); transform: translateY(-2px); }
+  .diario-entries { display: flex; flex-direction: column; gap: 16px; }
+  .entry-card {
+    background: var(--cream); border-radius: 12px; padding: 20px;
+    border: 1px solid rgba(26,20,16,0.06);
+    animation: slideIn 0.4s ease;
+  }
+  @keyframes slideIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+  .entry-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+  .entry-emotion { font-size: 1.4rem; }
+  .entry-date { font-size: 0.72rem; opacity: 0.4; font-family: 'DM Mono', monospace; }
+  .entry-text { font-size: 0.87rem; line-height: 1.6; opacity: 0.7; }
+  .entries-empty { text-align: center; padding: 40px; opacity: 0.35; font-size: 0.9rem; }
+
+  /* ── QUIZ ── */
+  #quiz { background: linear-gradient(160deg, var(--deep) 0%, #3D2820 100%); color: white; }
+  #quiz .section-tag { color: var(--gold); }
+  #quiz .section-tag::before { background: var(--gold); }
+  #quiz h2 { color: white; }
+  #quiz h2 em { color: var(--gold); }
+  #quiz .section-sub { color: rgba(255,255,255,0.5); }
+  .quiz-box {
+    margin-top: 60px; max-width: 680px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px; padding: 48px;
+  }
+  .quiz-progress { display: flex; gap: 6px; margin-bottom: 36px; }
+  .progress-dot {
+    flex: 1; height: 3px; border-radius: 2px;
+    background: rgba(255,255,255,0.12); transition: background 0.3s;
+  }
+  .progress-dot.done { background: var(--gold); }
+  .progress-dot.active { background: var(--rose); }
+  .quiz-question {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.35rem; font-weight: 700; line-height: 1.35;
+    margin-bottom: 28px; color: white;
+  }
+  .quiz-options { display: flex; flex-direction: column; gap: 12px; }
+  .quiz-option {
+    background: rgba(255,255,255,0.05);
+    border: 1.5px solid rgba(255,255,255,0.1);
+    border-radius: 10px; padding: 14px 20px;
+    font-size: 0.9rem; color: rgba(255,255,255,0.75);
+    cursor: none; transition: all 0.2s; text-align: left;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .quiz-option:hover { border-color: var(--gold); color: white; background: rgba(201,169,110,0.1); }
+  .quiz-option.selected { border-color: var(--gold); background: rgba(201,169,110,0.15); color: white; }
+  .quiz-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 32px; }
+  .quiz-counter { font-size: 0.78rem; opacity: 0.4; font-family: 'DM Mono', monospace; }
+  .quiz-btn {
+    background: var(--gold); color: var(--deep);
+    border: none; padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 0.85rem;
+    border-radius: 8px; cursor: none; transition: all 0.2s;
+  }
+  .quiz-btn:hover { background: white; transform: translateY(-1px); }
+  .quiz-btn:disabled { opacity: 0.3; cursor: none; transform: none; }
+  .quiz-result {
+    text-align: center; display: none; animation: slideIn 0.5s ease;
+  }
+  .result-icon { font-size: 3rem; margin-bottom: 16px; }
+  .result-title {
+    font-family: 'Playfair Display', serif; font-size: 1.5rem;
+    font-weight: 700; margin-bottom: 12px; color: var(--gold);
+  }
+  .result-desc { font-size: 0.9rem; opacity: 0.65; line-height: 1.7; margin-bottom: 28px; }
+  .result-restart {
+    background: transparent; border: 1.5px solid var(--gold);
+    color: var(--gold); padding: 12px 28px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.85rem; font-weight: 500;
+    border-radius: 8px; cursor: none; transition: all 0.2s;
+  }
+  .result-restart:hover { background: var(--gold); color: var(--deep); }
+
+  /* ── MEDITAÇÃO ── */
+  #meditacao { background: var(--cream); }
+  .meditacao-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 60px; }
+  .breath-circle-wrap { display: flex; justify-content: center; }
+  .breath-outer {
+    width: 260px; height: 260px; border-radius: 50%;
+    background: rgba(200,117,106,0.06);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .breath-ring {
+    position: absolute; inset: 0; border-radius: 50%;
+    border: 2px solid rgba(200,117,106,0.2);
+  }
+  .breath-circle {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--rose), var(--blush));
+    display: flex; align-items: center; justify-content: center;
+    cursor: none; box-shadow: 0 0 0 0 rgba(200,117,106,0.3);
+    transition: transform 0.1s;
+  }
+  .breath-circle.inhale {
+    animation: breatheIn 4s ease-in-out forwards;
+  }
+  .breath-circle.exhale {
+    animation: breatheOut 4s ease-in-out forwards;
+  }
+  .breath-circle.hold {
+    animation: none;
+  }
+  @keyframes breatheIn {
+    from { transform: scale(1); box-shadow: 0 0 0 0 rgba(200,117,106,0.3); }
+    to { transform: scale(1.25); box-shadow: 0 0 40px 20px rgba(200,117,106,0.15); }
+  }
+  @keyframes breatheOut {
+    from { transform: scale(1.25); box-shadow: 0 0 40px 20px rgba(200,117,106,0.15); }
+    to { transform: scale(1); box-shadow: 0 0 0 0 rgba(200,117,106,0.3); }
+  }
+  .breath-label {
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem; font-weight: 700; color: white;
+    text-align: center; line-height: 1.2; pointer-events: none;
+  }
+  .breath-sub-label { font-size: 0.7rem; opacity: 0.7; font-family: 'DM Sans', sans-serif; font-weight: 400; }
+  .meditacao-controls { display: flex; flex-direction: column; gap: 24px; }
+  .med-title { font-family: 'Playfair Display', serif; font-size: 1.6rem; font-weight: 700; color: var(--deep); margin-bottom: 4px; }
+  .med-sub { font-size: 0.9rem; opacity: 0.55; line-height: 1.65; margin-bottom: 8px; }
+  .técnica-selector { display: flex; gap: 10px; flex-wrap: wrap; }
+  .tecnica-btn {
+    background: var(--cream); border: 1.5px solid rgba(26,20,16,0.1);
+    border-radius: 20px; padding: 8px 16px;
+    font-size: 0.78rem; font-weight: 500; cursor: none;
+    transition: all 0.2s; color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .tecnica-btn.active, .tecnica-btn:hover { background: var(--rose); border-color: var(--rose); color: white; }
+  .breath-timer {
+    font-family: 'DM Mono', monospace;
+    font-size: 3rem; color: var(--rose); font-weight: 500;
+    line-height: 1;
+  }
+  .breath-phase { font-size: 0.85rem; opacity: 0.5; letter-spacing: 0.1em; text-transform: uppercase; }
+  .med-start-btn {
+    background: var(--rose); color: white;
+    border: none; padding: 15px 36px;
+    font-family: 'DM Sans', sans-serif; font-size: 0.9rem; font-weight: 500;
+    border-radius: 8px; cursor: none; transition: all 0.25s; align-self: flex-start;
+  }
+  .med-start-btn:hover { background: var(--deep); transform: translateY(-2px); }
+
+  /* ── EVOLUÇÃO ── */
+  #evolucao { background: white; }
+  .evolucao-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-top: 60px; }
+  .evolucao-tracker { display: flex; flex-direction: column; gap: 20px; }
+  .habit-item {
+    display: flex; align-items: center; gap: 16px;
+    background: var(--cream); border-radius: 12px; padding: 16px 20px;
+    transition: all 0.2s;
+  }
+  .habit-check {
+    width: 28px; height: 28px; border-radius: 50%;
+    border: 2px solid rgba(26,20,16,0.15);
+    display: flex; align-items: center; justify-content: center;
+    cursor: none; transition: all 0.25s; flex-shrink: 0;
+  }
+  .habit-check.done { background: var(--sage); border-color: var(--sage); }
+  .habit-check.done::after { content: '✓'; color: white; font-size: 0.8rem; font-weight: 700; }
+  .habit-info { flex: 1; }
+  .habit-name { font-weight: 500; font-size: 0.9rem; margin-bottom: 2px; }
+  .habit-streak { font-size: 0.72rem; opacity: 0.4; }
+  .habit-streak span { color: var(--rose); font-weight: 600; opacity: 1; }
+  .evolucao-stats { display: flex; flex-direction: column; gap: 20px; }
+  .evo-stat-card {
+    background: var(--cream); border-radius: 12px; padding: 24px;
+    border: 1px solid rgba(26,20,16,0.06);
+  }
+  .evo-stat-label { font-size: 0.75rem; opacity: 0.45; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .evo-stat-value { font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 700; color: var(--rose); }
+  .evo-bar-wrap { margin-top: 10px; background: rgba(26,20,16,0.06); border-radius: 4px; height: 4px; overflow: hidden; }
+  .evo-bar { height: 100%; background: linear-gradient(90deg, var(--rose), var(--blush)); border-radius: 4px; transition: width 1s ease; }
+  .level-badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 8px; }
+  .badge {
+    padding: 4px 12px; border-radius: 20px; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .badge-gold { background: rgba(201,169,110,0.15); color: var(--gold); }
+  .badge-sage { background: rgba(122,155,138,0.15); color: var(--sage); }
+  .badge-rose { background: rgba(200,117,106,0.12); color: var(--rose); }
+
+  /* ── CTA FINAL ── */
+  #cta {
+    background: var(--rose);
+    color: white; text-align: center;
+    padding: 100px 48px;
+  }
+  #cta h2 { color: white; }
+  #cta h2 em { color: rgba(255,255,255,0.7); font-style: italic; }
+  #cta .section-sub { color: rgba(255,255,255,0.7); margin: 0 auto 48px; }
+  .cta-btn {
+    background: white; color: var(--rose);
+    border: none; padding: 18px 48px;
+    font-family: 'DM Sans', sans-serif; font-size: 1rem; font-weight: 600;
+    border-radius: 4px; cursor: none; transition: all 0.25s;
+    display: inline-block; text-decoration: none;
+  }
+  .cta-btn:hover { background: var(--deep); color: white; transform: translateY(-3px); box-shadow: 0 20px 50px rgba(26,20,16,0.25); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--deep); color: rgba(255,255,255,0.4);
+    padding: 40px 48px; text-align: center; font-size: 0.82rem;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 16px 24px; }
+    .nav-links { display: none; }
+    section { padding: 70px 24px; }
+    #hero { grid-template-columns: 1fr; padding: 100px 24px 60px; gap: 48px; }
+    .hero-right { display: none; }
+    .diario-layout, .meditacao-layout, .evolucao-layout { grid-template-columns: 1fr; }
+    .hero-bg-circle { display: none; }
+  }
+
+  /* ── FADE IN ── */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Josielle <span>Azevedo</span></div>
+  <ul class="nav-links">
+    <li><a href="#mapa">Mapa Mental</a></li>
+    <li><a href="#diario">Diário</a></li>
+    <li><a href="#quiz">Quiz</a></li>
+    <li><a href="#meditacao">Meditação</a></li>
+    <li><a href="#evolucao">Evolução</a></li>
+  </ul>
+  <button class="nav-cta" onclick="document.getElementById('cta').scrollIntoView({behavior:'smooth'})">Começar Agora</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle"></div>
+  <div class="hero-left fade-in">
+    <div class="hero-tag">Mentora Estratégica em IA</div>
+    <h1>Inteligência que<br><em>Posiciona.</em><br>Estratégia que<br>Gera Resultado.</h1>
+    <p class="hero-sub">Transformo conhecimento em posicionamento, produtividade e lucro com Inteligência Artificial — sem complicação.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.getElementById('mapa').scrollIntoView({behavior:'smooth'})">Explorar o App</button>
+      <button class="btn-secondary" onclick="document.getElementById('quiz').scrollIntoView({behavior:'smooth'})">Fazer o Quiz</button>
+    </div>
+  </div>
+  <div class="hero-right fade-in">
+    <div class="hero-card">
+      <div class="card-badge">✦ Gratuito</div>
+      <div class="card-avatar">🧠</div>
+      <div class="card-title">App Inteligência Emocional</div>
+      <div class="card-desc">Mapa Mental, Diário Emocional, Quiz de Autoconhecimento e Meditação guiada em um único lugar.</div>
+      <div class="card-stats">
+        <div class="stat">
+          <div class="stat-num">5</div>
+          <div class="stat-lbl">Módulos</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">∞</div>
+          <div class="stat-lbl">Reflexões</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">100%</div>
+          <div class="stat-lbl">Grátis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MÓDULOS -->
+<section id="modulos">
+  <div class="section-tag">O que você encontra</div>
+  <h2>Cinco módulos para sua<br><em>transformação</em></h2>
+  <p class="section-sub">Cada módulo foi criado com intenção — para você se conhecer, crescer e agir com clareza.</p>
+  <div class="modulos-grid fade-in">
+    <div class="modulo-card">
+      <span class="modulo-icon">🗺️</span>
+      <div class="modulo-num">01 — Módulo</div>
+      <div class="modulo-title">Mapa Mental</div>
+      <div class="modulo-desc">Visualize suas metas, valores e conexões de forma clara e interativa.</div>
+      <a class="modulo-link" href="#mapa">Explorar →</a>
+    </div>
+    <div class="modulo-card">
+      <span class="modulo-icon">📓</span>
+      <div class="modulo-num">02 — Módulo</div>
+      <div class="modulo-title">Diário Emocional</div>
+      <div class="modulo-desc">Registre suas emoções e reflita sobre seu estado interior com prompts guiados.</div>
+      <a class="modulo-link" href="#diario">Explorar →</a>
+    </div>
+    <div class="modulo-card">
+      <span class="modulo-icon">✨</span>
+      <div class="modulo-num">03 — Módulo</div>
+      <div class="modulo-title">Quiz de Autoconhecimento</div>
+      <div class="modulo-desc">Descubra seu perfil emocional com 7 perguntas profundas e reveladoras.</div>
+      <a class="modulo-link" href="#quiz">Explorar →</a>
+    </div>
+    <div class="modulo-card">
+      <span class="modulo-icon">🌬️</span>
+      <div class="modulo-num">04 — Módulo</div>
+      <div class="modulo-title">Meditação Guiada</div>
+      <div class="modulo-desc">Técnicas de respiração e mindfulness para acalmar a mente e focar no essencial.</div>
+      <a class="modulo-link" href="#meditacao">Explorar →</a>
+    </div>
+    <div class="modulo-card">
+      <span class="modulo-icon">📈</span>
+      <div class="modulo-num">05 — Módulo</div>
+      <div class="modulo-title">Evolução Pessoal</div>
+      <div class="modulo-desc">Acompanhe seus hábitos, conquistas e crescimento ao longo da jornada.</div>
+      <a class="modulo-link" href="#evolucao">Explorar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAPA MENTAL -->
+<section id="mapa">
+  <div class="section-tag">Módulo 01</div>
+  <h2>Mapa <em>Mental</em></h2>
+  <p class="section-sub">Suas metas, valores e estratégias conectados em um único painel visual.</p>
+  <div class="mapa-container fade-in">
+    <div class="mapa-center">
+      <div class="mapa-node-central">Josielle<br>Azevedo<br>🧠</div>
+    </div>
+    <div class="mapa-branches">
+      <div class="mapa-branch">
+        <div class="branch-icon">🎯</div>
+        <div class="branch-title">Posicionamento</div>
+        <div class="branch-desc">Clareza sobre quem você é, o que entrega e para quem serve — sem confusão.</div>
+      </div>
+      <div class="mapa-branch">
+        <div class="branch-icon">🤖</div>
+        <div class="branch-title">IA nos Negócios</div>
+        <div class="branch-desc">Ferramentas práticas de IA aplicadas ao seu dia a dia com estratégia real.</div>
+      </div>
+      <div class="mapa-branch">
+        <div class="branch-icon">💡</div>
+        <div class="branch-title">Estratégia de Conteúdo</div>
+        <div class="branch-desc">Produção inteligente: menos tempo, mais impacto, resultados consistentes.</div>
+      </div>
+      <div class="mapa-branch">
+        <div class="branch-icon">💰</div>
+        <div class="branch-title">Novas Fontes de Renda</div>
+        <div class="branch-desc">Modelos de negócio digital que geram receita com o conhecimento que você já tem.</div>
+      </div>
+      <div class="mapa-branch">
+        <div class="branch-icon">🧘</div>
+        <div class="branch-title">Inteligência Emocional</div>
+        <div class="branch-desc">A base de tudo: equilíbrio interno para decisões mais sábias e ações mais assertivas.</div>
+      </div>
+      <div class="mapa-branch">
+        <div class="branch-icon">👑</div>
+        <div class="branch-title">Autoridade Digital</div>
+        <div class="branch-desc">Construir presença online de forma autêntica, sustentável e com propósito.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DIÁRIO EMOCIONAL -->
+<section id="diario">
+  <div class="section-tag">Módulo 02</div>
+  <h2>Diário <em>Emocional</em></h2>
+  <p class="section-sub">Como você está se sentindo hoje? Registre, reflita e acompanhe sua jornada interior.</p>
+  <div class="diario-layout fade-in">
+    <div class="diario-form">
+      <div class="form-group">
+        <div class="form-label">Como você está agora?</div>
+        <div class="emotion-grid" id="emotionGrid">
+          <div class="emotion-btn" data-emotion="😊 Feliz" onclick="selectEmotion(this)"><span class="emoji">😊</span>Feliz</div>
+          <div class="emotion-btn" data-emotion="😔 Triste" onclick="selectEmotion(this)"><span class="emoji">😔</span>Triste</div>
+          <div class="emotion-btn" data-emotion="😰 Ansioso" onclick="selectEmotion(this)"><span class="emoji">😰</span>Ansioso</div>
+          <div class="emotion-btn" data-emotion="😤 Frustrado" onclick="selectEmotion(this)"><span class="emoji">😤</span>Frustrado</div>
+          <div class="emotion-btn" data-emotion="🤩 Inspirado" onclick="selectEmotion(this)"><span class="emoji">🤩</span>Inspirado</div>
+          <div class="emotion-btn" data-emotion="😌 Em paz" onclick="selectEmotion(this)"><span class="emoji">😌</span>Em paz</div>
+          <div class="emotion-btn" data-emotion="😤 Com raiva" onclick="selectEmotion(this)"><span class="emoji">😡</span>Com raiva</div>
+          <div class="emotion-btn" data-emotion="🤔 Confuso" onclick="selectEmotion(this)"><span class="emoji">🤔</span>Confuso</div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="form-label">O que está em seu coração?</div>
+        <textarea class="diario-textarea" id="diarioText" placeholder="Escreva livremente... O que aconteceu hoje? Que pensamento não sai da cabeça? Qual é o seu maior desejo agora?" rows="5"></textarea>
+      </div>
+      <button class="diario-submit" onclick="addEntry()">Registrar no Diário ✦</button>
+    </div>
+    <div class="diario-entries" id="diarioEntries">
+      <div class="entries-empty" id="emptyState">
+        ✦ Suas reflexões aparecerão aqui.<br>Comece escrevendo algo.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section id="quiz">
+  <div class="section-tag">Módulo 03</div>
+  <h2>Quiz de <em>Autoconhecimento</em></h2>
+  <p class="section-sub">7 perguntas para revelar o seu perfil emocional e descobrir seu próximo passo.</p>
+  <div class="quiz-box fade-in">
+    <div id="quizContent">
+      <div class="quiz-progress" id="quizProgress"></div>
+      <div class="quiz-question" id="quizQuestion"></div>
+      <div class="quiz-options" id="quizOptions"></div>
+      <div class="quiz-nav">
+        <div class="quiz-counter" id="quizCounter"></div>
+        <button class="quiz-btn" id="quizNext" onclick="nextQuestion()" disabled>Próxima →</button>
+      </div>
+    </div>
+    <div class="quiz-result" id="quizResult">
+      <div class="result-icon" id="resultIcon"></div>
+      <div class="result-title" id="resultTitle"></div>
+      <div class="result-desc" id="resultDesc"></div>
+      <button class="result-restart" onclick="restartQuiz()">Refazer o Quiz</button>
+    </div>
+  </div>
+</section>
+
+<!-- MEDITAÇÃO -->
+<section id="meditacao">
+  <div class="section-tag">Módulo 04</div>
+  <h2>Meditação <em>Guiada</em></h2>
+  <p class="section-sub">Respire. Pare por um momento. Deixe a clareza chegar.</p>
+  <div class="meditacao-layout fade-in">
+    <div class="breath-circle-wrap">
+      <div class="breath-outer">
+        <div class="breath-ring"></div>
+        <div class="breath-circle" id="breathCircle">
+          <div class="breath-label">
+            <span id="breathLabel">Iniciar</span><br>
+            <span class="breath-sub-label" id="breathSubLabel">toque para começar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="meditacao-controls">
+      <div>
+        <div class="med-title">Respiração Consciente</div>
+        <div class="med-sub">Escolha uma técnica e deixe a respiração guiar seu estado interno. Pratique diariamente para resultados duradouros.</div>
+      </div>
+      <div>
+        <div class="form-label" style="font-size:0.72rem;opacity:0.45;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:10px;">Escolha a técnica</div>
+        <div class="técnica-selector">
+          <button class="tecnica-btn active" onclick="setTecnica(this,'4-4-4','Caixa')" data-inhale="4" data-hold="4" data-exhale="4">Respiração Caixa</button>
+          <button class="tecnica-btn" onclick="setTecnica(this,'4-7-8','4-7-8')" data-inhale="4" data-hold="7" data-exhale="8">Técnica 4-7-8</button>
+          <button class="tecnica-btn" onclick="setTecnica(this,'5-5','Coerência')" data-inhale="5" data-hold="0" data-exhale="5">Coerência</button>
+        </div>
+      </div>
+      <div>
+        <div class="breath-timer" id="breathTimer">0:00</div>
+        <div class="breath-phase" id="breathPhase">pronto para começar</div>
+      </div>
+      <button class="med-start-btn" id="medStartBtn" onclick="toggleMeditation()">▶ Iniciar Meditação</button>
+    </div>
+  </div>
+</section>
+
+<!-- EVOLUÇÃO -->
+<section id="evolucao">
+  <div class="section-tag">Módulo 05</div>
+  <h2>Evolução <em>Pessoal</em></h2>
+  <p class="section-sub">Acompanhe seus hábitos diários e celebre cada conquista da sua jornada.</p>
+  <div class="evolucao-layout fade-in">
+    <div class="evolucao-tracker">
+      <div style="font-family:'Playfair Display',serif;font-size:1.1rem;font-weight:700;color:var(--deep);margin-bottom:4px;">Hábitos de Hoje</div>
+      <div style="font-size:0.82rem;opacity:0.45;margin-bottom:8px;">Clique para marcar como concluído</div>
+      <div class="habit-item">
+        <div class="habit-check" id="h1" onclick="toggleHabit('h1',this)"></div>
+        <div class="habit-info">
+          <div class="habit-name">🧘 Meditação matinal</div>
+          <div class="habit-streak">Sequência: <span id="h1-streak">3</span> dias</div>
+        </div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-check" id="h2" onclick="toggleHabit('h2',this)"></div>
+        <div class="habit-info">
+          <div class="habit-name">📓 Diário emocional</div>
+          <div class="habit-streak">Sequência: <span id="h2-streak">7</span> dias</div>
+        </div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-check" id="h3" onclick="toggleHabit('h3',this)"></div>
+        <div class="habit-info">
+          <div class="habit-name">🤖 Estudar IA por 20 min</div>
+          <div class="habit-streak">Sequência: <span id="h3-streak">1</span> dia</div>
+        </div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-check" id="h4" onclick="toggleHabit('h4',this)"></div>
+        <div class="habit-info">
+          <div class="habit-name">✍️ Criar um conteúdo</div>
+          <div class="habit-streak">Sequência: <span id="h4-streak">5</span> dias</div>
+        </div>
+      </div>
+      <div class="habit-item">
+        <div class="habit-check" id="h5" onclick="toggleHabit('h5',this)"></div>
+        <div class="habit-info">
+          <div class="habit-name">🌱 Momento de gratidão</div>
+          <div class="habit-streak">Sequência: <span id="h5-streak">12</span> dias</div>
+        </div>
+      </div>
+    </div>
+    <div class="evolucao-stats">
+      <div class="evo-stat-card">
+        <div class="evo-stat-label">Hábitos concluídos hoje</div>
+        <div class="evo-stat-value" id="habitCount">0/5</div>
+        <div class="evo-bar-wrap"><div class="evo-bar" id="habitBar" style="width:0%"></div></div>
+      </div>
+      <div class="evo-stat-card">
+        <div class="evo-stat-label">Nível de evolução</div>
+        <div class="evo-stat-value">Nível 4</div>
+        <div class="level-badges">
+          <span class="badge badge-gold">✦ Estrategista</span>
+          <span class="badge badge-sage">🌱 Consistente</span>
+          <span class="badge badge-rose">🔥 Streaker</span>
+        </div>
+      </div>
+      <div class="evo-stat-card">
+        <div class="evo-stat-label">Total de reflexões no diário</div>
+        <div class="evo-stat-value" id="totalEntries">0</div>
+        <div style="font-size:0.78rem;opacity:0.4;margin-top:6px;">registros salvos nesta sessão</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="section-tag" style="justify-content:center;color:rgba(255,255,255,0.7);">Próximo Passo</div>
+  <h2 style="text-align:center;margin-bottom:16px;">Pronta para transformar<br>seu <em>negócio com IA?</em></h2>
+  <p class="section-sub" style="text-align:center;">Você não precisa trabalhar mais. Precisa usar inteligência artificial com estratégia. Vamos juntas?</p>
+  <div style="text-align:center;">
+    <a class="cta-btn" href="https://instagram.com" target="_blank">Falar com Josielle ✦</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Josielle Azevedo</strong> — Mentora Estratégica em IA para Negócios<br>
+  <span style="font-size:0.75rem;opacity:0.6;">Inteligência que Posiciona. Estratégia que Gera Resultado.</span></p>
+</footer>
+
+<script>
+  // ── CURSOR ──
+  const cursor = document.getElementById('cursor');
+  const ring = document.getElementById('cursorRing');
+  let mx = 0, my = 0, rx = 0, ry = 0;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; cursor.style.left = mx+'px'; cursor.style.top = my+'px'; });
+  function animRing() { rx += (mx-rx)*0.12; ry += (my-ry)*0.12; ring.style.left = rx+'px'; ring.style.top = ry+'px'; requestAnimationFrame(animRing); }
+  animRing();
+
+  // ── FADE IN ──
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+  // ── DIÁRIO EMOCIONAL ──
+  let selectedEmotion = '';
+  let entries = [];
+
+  function selectEmotion(el) {
+    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
+    el.classList.add('active');
+    selectedEmotion = el.dataset.emotion;
+  }
+
+  function addEntry() {
+    const text = document.getElementById('diarioText').value.trim();
+    if (!text) { alert('Escreva algo antes de registrar 💙'); return; }
+    const emotion = selectedEmotion || '💭 Reflexão';
+    const emojiPart = emotion.split(' ')[0];
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('pt-BR', { day:'2-digit', month:'short', hour:'2-digit', minute:'2-digit' });
+    entries.unshift({ emotion: emojiPart, text, date: dateStr });
+    renderEntries();
+    document.getElementById('diarioText').value = '';
+    document.querySelectorAll('.emotion-btn').forEach(b => b.classList.remove('active'));
+    selectedEmotion = '';
+    document.getElementById('totalEntries').textContent = entries.length;
+  }
+
+  function renderEntries() {
+    const container = document.getElementById('diarioEntries');
+    const empty = document.getElementById('emptyState');
+    if (entries.length === 0) { empty.style.display = 'block'; return; }
+    empty.style.display = 'none';
+    container.innerHTML = entries.slice(0,5).map(e => `
+      <div class="entry-card">
+        <div class="entry-header">
+          <span class="entry-emotion">${e.emotion}</span>
+          <span class="entry-date">${e.date}</span>
+        </div>
+        <div class="entry-text">${e.text.substring(0,200)}${e.text.length > 200 ? '...' : ''}</div>
+      </div>
+    `).join('');
+  }
+
+  // ── QUIZ ──
+  const questions = [
+    { q: "Quando enfrento um grande desafio, minha primeira reação é...", opts: ["Analisar todas as opções antes de agir","Buscar apoio emocional de alguém próximo","Mergulhar de cabeça e descobrir no caminho","Sentir ansiedade e precisar de tempo para processar"] },
+    { q: "O que mais me trava de crescer no digital é...", opts: ["Não saber por onde começar","Medo do julgamento das pessoas","Falta de tempo e energia","Não me sentir boa o suficiente"] },
+    { q: "Quando conquisto algo importante, costumo...", opts: ["Celebrar e compartilhar com orgulho","Minimizar e já pensar no próximo objetivo","Refletir sobre o processo e aprender","Sentir alívio, mas logo uma nova preocupação"] },
+    { q: "Minha relação com a produtividade é...", opts: ["Sou muito disciplinada e organizada","Funciono bem em ciclos de foco e descanso","Processo bastante, mas executo pouco","Prefiro agir e ajustar depois"] },
+    { q: "Quando penso em usar IA nos meus negócios, sinto...", opts: ["Animação — quero aprender agora!","Curiosidade, mas também insegurança","Resistência — parece muito complicado","Urgência — sinto que estou ficando para trás"] },
+    { q: "O que mais me energiza no trabalho é...", opts: ["Criar conteúdo e me expressar","Conectar com pessoas e ajudar","Estratégia e resultados concretos","Aprender e evoluir constantemente"] },
+    { q: "Meu maior sonho com meu negócio digital é...", opts: ["Liberdade financeira e geográfica","Ser referência no meu nicho","Impactar vidas de forma significativa","Ter mais tempo para o que amo"] }
+  ];
+
+  const results = [
+    { icon: "🦅", title: "A Estrategista Visionária", desc: "Você pensa grande e tem visão de longo prazo. Seu maior desafio é transformar as ideias em ação concreta. A IA será sua aliada perfeita para executar com velocidade sem perder a qualidade estratégica." },
+    { icon: "🌺", title: "A Conectora Empática", desc: "Sua força está nas relações humanas e na capacidade de inspirar. Use a IA para amplificar sua mensagem e alcançar mais pessoas com autenticidade, sem perder sua essência única." },
+    { icon: "⚡", title: "A Executora Incansável", desc: "Você age rápido e aprende na prática. A IA será seu maior superpoder para multiplicar resultados. O próximo passo é criar um método replicável para o que você já faz bem." },
+    { icon: "🌱", title: "A Transformadora em Ascensão", desc: "Você está em um momento de expansão e descoberta. A IA pode acelerar muito sua curva de aprendizado. Com o método certo, você dará um salto enorme nos próximos meses." }
+  ];
+
+  let currentQ = 0, answers = [], selectedOpt = null;
+
+  function initQuiz() {
+    currentQ = 0; answers = []; selectedOpt = null;
+    document.getElementById('quizContent').style.display = 'block';
+    document.getElementById('quizResult').style.display = 'none';
+    renderQuestion();
+  }
+
+  function renderQuestion() {
+    const q = questions[currentQ];
+    // progress
+    let dots = '';
+    for (let i = 0; i < questions.length; i++) {
+      let cls = i < currentQ ? 'done' : i === currentQ ? 'active' : '';
+      dots += `<div class="progress-dot ${cls}"></div>`;
+    }
+    document.getElementById('quizProgress').innerHTML = dots;
+    document.getElementById('quizQuestion').textContent = q.q;
+    document.getElementById('quizCounter').textContent = `${currentQ + 1} de ${questions.length}`;
+    document.getElementById('quizOptions').innerHTML = q.opts.map((o, i) =>
+      `<button class="quiz-option" onclick="selectOpt(this, ${i})">${o}</button>`
+    ).join('');
+    document.getElementById('quizNext').disabled = true;
+    selectedOpt = null;
+  }
+
+  function selectOpt(el, i) {
+    document.querySelectorAll('.quiz-option').forEach(b => b.classList.remove('selected'));
+    el.classList.add('selected');
+    selectedOpt = i;
+    document.getElementById('quizNext').disabled = false;
+  }
+
+  function nextQuestion() {
+    if (selectedOpt === null) return;
+    answers.push(selectedOpt);
+    if (currentQ < questions.length - 1) {
+      currentQ++;
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }
+
+  function showResult() {
+    const sum = answers.reduce((a, b) => a + b, 0);
+    const idx = Math.min(Math.floor(sum / (questions.length * 0.9)), results.length - 1);
+    const r = results[idx];
+    document.getElementById('quizContent').style.display = 'none';
+    const res = document.getElementById('quizResult');
+    res.style.display = 'block';
+    document.getElementById('resultIcon').textContent = r.icon;
+    document.getElementById('resultTitle').textContent = r.title;
+    document.getElementById('resultDesc').textContent = r.desc;
+  }
+
+  function restartQuiz() { initQuiz(); }
+  initQuiz();
+
+  // ── MEDITAÇÃO ──
+  let medRunning = false, medInterval = null, totalSecs = 0;
+  let inhale = 4, hold = 4, exhale = 4;
+  let phase = 'inhale', phaseTimer = 0;
+
+  function setTecnica(btn, key, name) {
+    document.querySelectorAll('.tecnica-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    inhale = parseInt(btn.dataset.inhale);
+    hold = parseInt(btn.dataset.hold);
+    exhale = parseInt(btn.dataset.exhale);
+    if (medRunning) { stopMed(); }
+  }
+
+  function toggleMeditation() {
+    if (medRunning) { stopMed(); } else { startMed(); }
+  }
+
+  function startMed() {
+    medRunning = true;
+    document.getElementById('medStartBtn').textContent = '⏸ Pausar';
+    phase = 'inhale'; phaseTimer = inhale;
+    updateBreath();
+    medInterval = setInterval(tick, 1000);
+  }
+
+  function stopMed() {
+    medRunning = false;
+    clearInterval(medInterval);
+    document.getElementById('medStartBtn').textContent = '▶ Iniciar Meditação';
+    document.getElementById('breathLabel').textContent = 'Pausado';
+    document.getElementById('breathSubLabel').textContent = 'toque para continuar';
+    document.getElementById('breathPhase').textContent = 'pausado';
+    const bc = document.getElementById('breathCircle');
+    bc.className = 'breath-circle';
+  }
+
+  function tick() {
+    totalSecs++;
+    const m = Math.floor(totalSecs/60), s = totalSecs%60;
+    document.getElementById('breathTimer').textContent = m + ':' + (s<10?'0':'') + s;
+    phaseTimer--;
+    if (phaseTimer <= 0) {
+      if (phase === 'inhale') {
+        phase = hold > 0 ? 'hold' : 'exhale';
+        phaseTimer = hold > 0 ? hold : exhale;
+      } else if (phase === 'hold') {
+        phase = 'exhale'; phaseTimer = exhale;
+      } else {
+        phase = 'inhale'; phaseTimer = inhale;
+      }
+      updateBreath();
+    }
+  }
+
+  function updateBreath() {
+    const bc = document.getElementById('breathCircle');
+    const lbl = document.getElementById('breathLabel');
+    const sub = document.getElementById('breathSubLabel');
+    const ph = document.getElementById('breathPhase');
+    bc.className = 'breath-circle';
+    void bc.offsetWidth;
+    if (phase === 'inhale') {
+      bc.classList.add('inhale');
+      lbl.textContent = 'Inspire';
+      sub.textContent = phaseTimer + 's';
+      ph.textContent = 'inspirando...';
+    } else if (phase === 'hold') {
+      bc.classList.add('hold');
+      lbl.textContent = 'Segure';
+      sub.textContent = phaseTimer + 's';
+      ph.textContent = 'segurando...';
+    } else {
+      bc.classList.add('exhale');
+      lbl.textContent = 'Expire';
+      sub.textContent = phaseTimer + 's';
+      ph.textContent = 'expirando...';
+    }
+  }
+
+  // ── HÁBITOS ──
+  let habitsDone = new Set();
+
+  function toggleHabit(id, el) {
+    if (habitsDone.has(id)) {
+      habitsDone.delete(id);
+      el.classList.remove('done');
+      const streak = document.getElementById(id+'-streak');
+      if (streak) streak.textContent = parseInt(streak.textContent) - 1;
+    } else {
+      habitsDone.add(id);
+      el.classList.add('done');
+      const streak = document.getElementById(id+'-streak');
+      if (streak) streak.textContent = parseInt(streak.textContent) + 1;
+    }
+    const count = habitsDone.size;
+    document.getElementById('habitCount').textContent = count + '/5';
+    document.getElementById('habitBar').style.width = (count/5*100) + '%';
+  }
+</script>
+</body>
+</html>
