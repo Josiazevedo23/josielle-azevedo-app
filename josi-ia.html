@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JOSI IA™ | Inteligência Artificial para Negócios</title>
+
+<meta name="description" content="Inteligência Artificial aplicada à gestão, processos e produtividade. Conheça a JOSI IA™.">
+
+<style>
+:root {
+    --bege: #F5F1EC;
+    --branco: #FFFDF9;
+    --verde: #183226;
+    --verde2: #294637;
+    --dourado: #B58A45;
+    --texto: #252525;
+    --cinza: #6E675F;
+    --linha: #DDD2C5;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--bege);
+    color: var(--texto);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1100px;
+    margin: auto;
+}
+
+nav {
+    background: var(--verde);
+    color: white;
+    padding: 18px 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: Georgia, serif;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.logo span {
+    color: #E1BB76;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.hero {
+    padding: 70px 6%;
+    background:
+        linear-gradient(
+            135deg,
+            #FFFDF9,
+            #EAE0D4
+        );
+}
+
+.tag {
+    color: var(--dourado);
+    font-size: 12px;
+    font-weight: bold;
+    letter-spacing: 1.5px;
+}
+
+h1,
+h2 {
+    font-family: Georgia, serif;
+}
+
+h1 {
+    max-width: 800px;
+    font-size: 48px;
+    line-height: 1.08;
+    margin: 14px 0 20px;
+}
+
+h2 {
+    font-size: 32px;
+}
+
+.hero p {
+    max-width: 760px;
+    font-size: 18px;
+}
+
+.btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 14px 20px;
+    border-radius: 10px;
+    background: var(--verde);
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-dourado {
+    background: var(--dourado);
+    color: #17251D;
+}
+
+section {
+    padding: 55px 6%;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+}
+
+.card {
+    background: var(--branco);
+    border: 1px solid var(--linha);
+    border-radius: 16px;
+    padding: 24px;
+}
+
+.card h3 {
+    margin-top: 0;
+}
+
+.preco {
+    color: var(--verde);
+    font-size: 27px;
+    font-weight: bold;
+}
+
+.metodo {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+}
+
+.metodo div {
+    background: var(--verde);
+    color: white;
+    padding: 20px;
+    border-radius: 14px;
+}
+
+.metodo strong {
+    color: #E1BB76;
+    font-size: 22px;
+}
+
+.sobre {
+    max-width: 800px;
+}
+
+.frase {
+    font-family: Georgia, serif;
+    font-size: 24px;
+    font-style: italic;
+    color: var(--verde);
+}
+
+.privacidade {
+    background: #EEE5DA;
+    padding: 18px;
+    border-radius: 12px;
+}
+
+.cta {
+    background: var(--verde);
+    color: white;
+    text-align: center;
+}
+
+.cta h2 {
+    color: white;
+}
+
+footer {
+    background: #10251C;
+    color: #DDD;
+    text-align: center;
+    padding: 30px 6%;
+}
+
+footer strong {
+    color: white;
+}
+
+@media (max-width: 850px) {
+    .grid {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .metodo {
+        grid-template-columns: 1fr;
+    }
+
+    h1 {
+        font-size: 39px;
+    }
+}
+
+@media (max-width: 550px) {
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .hero,
+    section {
+        padding: 42px 5%;
+    }
+
+    nav {
+        padding: 17px 5%;
+    }
+
+    h1 {
+        font-size: 36px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<nav>
+    <div class="logo">
+        JOSI <span>IA™</span>
+    </div>
+
+    <a href="#solucoes">
+        Soluções
+    </a>
+</nav>
+
+
+<header class="hero">
+
+<div class="container">
+
+    <div class="tag">
+        INTELIGÊNCIA ARTIFICIAL PARA NEGÓCIOS
+    </div>
+
+    <h1>
+        Transformando desafios em soluções inteligentes.
+    </h1>
+
+    <p>
+        Inteligência Artificial aplicada à gestão,
+        processos e produtividade — com estratégia,
+        segurança e responsabilidade.
+    </p>
+
+    <p>
+        <strong>
+            Não começamos pela ferramenta.
+            Começamos pelo problema.
+        </strong>
+    </p>
+
+    <a class="btn btn-dourado" href="#contato">
+        Quero conhecer as possibilidades
+    </a>
+
+</div>
+
+</header>
+
+
+<section>
+
+<div class="container">
+
+    <div class="tag">
+        JOSI IA™
+    </div>
+
+    <h2>
+        IA aplicada à realidade do seu negócio
+    </h2>
+
+    <p>
+        Antes de indicar uma ferramenta, buscamos
+        compreender o negócio, os processos e os
+        principais desafios.
+    </p>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Gestão</h3>
+
+            <p>
+                Organização de informações,
+                produtividade e apoio aos processos
+                de gestão.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Processos</h3>
+
+            <p>
+                Identificação de gargalos,
+                retrabalho e tarefas repetitivas.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Inteligência Artificial</h3>
+
+            <p>
+                Aplicação prática da IA onde
+                houver ganho real para o negócio.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Implementação</h3>
+
+            <p>
+                Prompts, fluxos, documentos,
+                orientação e soluções personalizadas.
+            </p>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section id="solucoes">
+
+<div class="container">
+
+    <div class="tag">
+        SOLUÇÕES
+    </div>
+
+    <h2>
+        Comece no nível certo para o seu negócio
+    </h2>
+
+    <div class="grid">
+
+        <div class="card">
+
+            <h3>
+                Diagnóstico Inicial
+            </h3>
+
+            <div class="preco">
+                3× R$ 35
+            </div>
+
+            <p>
+                R$ 105 à vista
+            </p>
+
+            <p>
+                Análise objetiva para identificar
+                maturidade, principais gargalos e
+                primeiras oportunidades de aplicação
+                da Inteligência Artificial.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Diagnóstico Completo
+            </h3>
+
+            <div class="preco">
+                R$ 420
+            </div>
+
+            <p>
+                Análise aprofundada do negócio,
+                processos e oportunidades.
+            </p>
+
+            <p>
+                Inclui:
+                <strong>
+                    protocolo personalizado,
+                    PDF com passo a passo das melhorias
+                    e vídeo personalizado.
+                </strong>
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Implementação
+            </h3>
+
+            <div class="preco">
+                A partir de R$ 1.000
+            </div>
+
+            <p>
+                Transformamos as oportunidades
+                identificadas em soluções práticas
+                para o negócio.
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <h3>
+                Solução Personalizada
+            </h3>
+
+            <div class="preco">
+                A partir de R$ 7.000
+            </div>
+
+            <p>
+                Projetos personalizados de maior
+                complexidade, desenvolvidos conforme
+                as necessidades e o escopo do negócio.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+    <div class="tag">
+        MÉTODO JOSI IA™
+    </div>
+
+    <h2>
+        Do problema à solução
+    </h2>
+
+    <div class="metodo">
+
+        <div>
+            <strong>J</strong>
+            <br>
+            Jornada
+            <br><br>
+            Entender o negócio,
+            a rotina e os objetivos.
+        </div>
+
+        <div>
+            <strong>O</strong>
+            <br>
+            Organização
+            <br><br>
+            Mapear processos,
+            gargalos e retrabalho.
+        </div>
+
+        <div>
+            <strong>S</strong>
+            <br>
+            Solução Inteligente
+            <br><br>
+            Identificar onde a IA
+            realmente agrega valor.
+        </div>
+
+        <div>
+            <strong>I</strong>
+            <br>
+            Implementação
+            <br><br>
+            Transformar estratégia
+            em aplicação prática.
+        </div>
+
+        <div>
+            <strong>IA</strong>
+            <br>
+            Acompanhamento
+            <br><br>
+            Medir, corrigir
+            e evoluir.
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container sobre">
+
+    <div class="tag">
+        SOBRE
+    </div>
+
+    <h2>
+        Josi Azevedo
+    </h2>
+
+    <p>
+        Profissional da área de Administração,
+        com atuação voltada à aplicação estratégica
+        da Inteligência Artificial em negócios,
+        gestão e processos.
+    </p>
+
+    <p>
+        A JOSI IA™ nasce para aproximar a tecnologia
+        da realidade das empresas, buscando soluções
+        úteis, aplicáveis e centradas nas pessoas.
+    </p>
+
+    <p class="frase">
+        “Quanto mais poderosa a tecnologia,
+        maior deve ser a responsabilidade
+        sobre os dados.”
+    </p>
+
+</div>
+
+</section>
+
+
+<section>
+
+<div class="container">
+
+    <h2>
+        Inteligência Artificial com responsabilidade
+    </h2>
+
+    <div class="privacidade">
+
+        <strong>
+            Privacidade desde o início.
+        </strong>
+
+        <p>
+            Esta página pública não solicita
+            dados pessoais por formulário.
+        </p>
+
+        <p>
+            Para iniciar uma conversa,
+            utilize o canal de contato da JOSI IA™.
+        </p>
+
+        <p>
+            Não envie senhas, dados bancários,
+            dados de saúde ou outras informações
+            sensíveis desnecessárias.
+        </p>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<section class="cta" id="contato">
+
+<div class="container">
+
+    <h2>
+        Quer descobrir onde a IA pode gerar
+        resultado no seu negócio?
+    </h2>
+
+    <p>
+        Conte qual é o principal desafio
+        da sua empresa hoje.
+    </p>
+
+    <a
+        class="btn btn-dourado"
+        href="https://www.instagram.com/josiazevedo.ia/"
+        target="_blank"
+        rel="noopener"
+    >
+        Falar com a JOSI IA no Instagram
+    </a>
+
+</div>
+
+</section>
+
+
+<footer>
+
+    <strong>
+        JOSI IA™
+    </strong>
+
+    <br>
+
+    Inteligência Artificial aplicada à gestão,
+    processos e resultados.
+
+    <br><br>
+
+    © 2026 Josi Azevedo
+
+</footer>
+
+</body>
+</html>
